@@ -48,3 +48,7 @@ vim.diagnostic.config({
   update_in_insert = false, -- Don't diturb while typing
   severity_sort = true,     -- Sort errors according to importance
 })
+
+-- Точечный маппинг только для основных клавиш навигации и редактирования
+vim.opt.langmap = "рh,оj,лk,дl,фa,иb,сc,вd,уe,аf,пg,рh,шi,оj,лk,зp,йq,кr,еt,гu,мv,цw,чx,нy,яz," ..
+                  "РH,ОJ,ЛK,ДL,ФA,ИB,СC,ВD,УE,АF,ПG,РH,ШI,ОJ,ЛK,ЗP,ЙQ,КR,ЕT,ГU,МV,ЦW,ЧX,НY,ЯZ"

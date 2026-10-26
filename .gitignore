@@ -1,2 +1,6 @@
 # Ignore packed plugins
 pack
+
+# Misc files
+.DS_Store
+.Trash*

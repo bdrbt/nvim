@@ -62,3 +62,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.lsp.buf.format({ async = false, timeout_ms = 1000 })
     end,
 })
+
+-- Nanogit
+vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged", "BufEnter" }, {
+    callback = function()
+        require("nanogit").init()
+    end,
+})
