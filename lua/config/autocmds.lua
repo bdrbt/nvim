@@ -30,11 +30,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     callback = function()
         pcall(function()
-            -- Получаем активный клиент для текущего буфера
+            -- Get activae client and buffer
             local clients = vim.lsp.get_clients({ bufnr = 0 })
             if #clients == 0 then return end
 
-            -- Берем кодировку первого активного клиента (или фокус на utf-16 по умолчанию)
+            -- Get encoding from first client
             local encoding = clients[0 and 1 or 1].offset_encoding or "utf-16"
 
             local params = vim.lsp.util.make_range_params(0, encoding)
@@ -42,7 +42,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                 only = { "source.organizeImports" },
                 diagnostics = {}, -- LSP require diagnostic table
             }
-            params.context = { only = { "source.organizeImports" } }
 
             -- Ask synchronous code action
             local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
