@@ -24,3 +24,31 @@ autocmd("InsertLeave", {
     end
   end,
 })
+
+-- Format, organizing imports on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    pcall(function()
+      local params = vim.lsp.util.make_range_params()
+      params.context = { only = { "source.organizeImports" } }
+      
+      -- Ask synchronous code action 
+      local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+      if result then
+        for _, res in pairs(result) do
+          if res.result then
+            for _, err in pairs(res.result) do
+              if err.edit then
+                vim.lsp.util.apply_workspace_edit(err.edit, "utf-8")
+              end
+            end
+          end
+        end
+      end
+    end)
+
+    -- Aaaand format
+    vim.lsp.buf.format({ async = false, timeout_ms = 1000 })
+  end,
+})

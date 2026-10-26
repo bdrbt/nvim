@@ -40,3 +40,11 @@ opt.shortmess:append("c")
 opt.backup = false
 opt.swapfile = false
 opt.undofile = true 
+
+-- Linting
+vim.diagnostic.config({
+  virtual_text = true,      -- Show erro code on line
+  signs = true,             -- Show signs
+  update_in_insert = false, -- Don't diturb while typing
+  severity_sort = true,     -- Sort errors according to importance
+})
