@@ -5,16 +5,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local bufnr = args.buf
         local client_id = args.data.client_id
 
-        if vim.lsp.completion then
-            vim.lsp.completion.enable(true, client_id, bufnr, {
-                autotrigger = true
-            })
-        end
+        vim.lsp.completion.enable(true, client_id, bufnr, {
+            autotrigger = true
+        })
     end
 })
 
 -- Lsp servers list
-local servers = { "gopls", "clangd", "emmylua_ls" }
+local servers = { "nil_ls", "gopls", "clangd", "emmylua_ls" }
 
 for _, server in ipairs(servers) do
     -- Try load lua/lsp/<server>.lua

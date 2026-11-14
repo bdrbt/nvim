@@ -8,28 +8,28 @@ local number_toggle_group = augroup("NumberToggle", { clear = true })
 
 autocmd("InsertEnter", {
     group = number_toggle_group,
-    callback = function()
+    callback = function ()
         -- Is the numbering turned ON
         if vim.opt_local.number:get() then
             vim.opt_local.relativenumber = true
         end
-    end,
+    end
 })
 
 autocmd("InsertLeave", {
     group = number_toggle_group,
-    callback = function()
+    callback = function ()
         if vim.opt_local.number:get() then
             vim.opt_local.relativenumber = false
         end
-    end,
+    end
 })
 
 -- Format, organizing imports on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
-    callback = function()
-        pcall(function()
+    callback = function ()
+        pcall(function ()
             -- Get activae client and buffer
             local clients = vim.lsp.get_clients({ bufnr = 0 })
             if #clients == 0 then return end
@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
             local params = vim.lsp.util.make_range_params(0, encoding)
             params.context = {
                 only = { "source.organizeImports" },
-                diagnostics = {}, -- LSP require diagnostic table
+                diagnostics = {} -- LSP require diagnostic table
             }
 
             -- Ask synchronous code action
@@ -60,12 +60,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
         -- Aaaand format
         vim.lsp.buf.format({ async = false, timeout_ms = 1000 })
-    end,
+    end
 })
 
 -- Nanogit
 vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged", "BufEnter" }, {
-    callback = function()
+    callback = function ()
         require("nanogit").init()
-    end,
+    end
 })

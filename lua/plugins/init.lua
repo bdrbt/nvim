@@ -18,6 +18,13 @@ ensure_plugin("https://github.com/folke/tokyonight.nvim")
 ensure_plugin("https://github.com/neovim/nvim-lspconfig")
 
 -- Plugins setup
+
+-- Theme
+require("tokyonight").setup({
+    -- your existing options, e.g., style = "night" or "storm"
+    style = "night",
+    transparent = true -- Enable this to make the background transparent
+})
 vim.cmd.colorscheme("tokyonight-night")
 
 return M
