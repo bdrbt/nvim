@@ -9,21 +9,30 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- Common keys
--- Remove search highliight
+-- Remove search highlight
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
 -- Toggle line numbering
-vim.keymap.set({ "n", "i", "v" }, "<C-n>", function()
-  if vim.opt_local.relativenumber:get() then
-    vim.opt_local.relativenumber = false
-    print("Relative numbers: OFF")
-  else
-    vim.opt_local.relativenumber = true
-    print("Relative numbers: ON")
-  end
-end, { desc = "Toggle relative line numbers" })
+vim.keymap.set({ "n", "i", "v" }, "<C-n>", function ()
+    if vim.opt_local.relativenumber:get() then
+        vim.opt_local.relativenumber = false
+        print("Relative numbers: OFF")
+    else
+        vim.opt_local.relativenumber = true
+        print("Relative numbers: ON")
+    end
+end, { desc = "Toggle relative line numbers" }
+)
 
--- LSP 
+-- Spell toggle
+
+vim.keymap.set("n", "<leader>us", function ()
+    vim.opt.spell = not vim.opt.spell
+    print("Spellcheck: " .. (vim.opt.spell:get() and "ON" or "OFF"))
+end, { desc = "Toggle spelling" }
+)
+
+-- LSP
 -- Go to Definition
 map("n", "gd", vim.lsp.buf.definition, { desc = "LSP: Go to definition" })
 
@@ -45,7 +54,7 @@ map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
 -- Code format
-vim.keymap.set("n", "<leader>f", function()
-  vim.lsp.buf.format({ async = true })
-end, { desc = "LSP: Format current file" })
-
+vim.keymap.set("n", "<leader>f", function ()
+    vim.lsp.buf.format({ async = true })
+end, { desc = "LSP: Format current file" }
+)

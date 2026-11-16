@@ -69,3 +69,10 @@ vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged", "BufEnter" }, {
         require("nanogit").init()
     end
 })
+
+-- Ctrl+Space for autocompletion
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function (event)
+        vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', { buffer = event.buf, desc = 'Trigger LSP completion' })
+    end
+})

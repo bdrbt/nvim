@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Lsp servers list
-local servers = { "nil_ls", "gopls", "clangd", "emmylua_ls" }
+local servers = { "nil_ls", "gopls", "clangd", "emmylua_ls", "texlab" }
 
 for _, server in ipairs(servers) do
     -- Try load lua/lsp/<server>.lua

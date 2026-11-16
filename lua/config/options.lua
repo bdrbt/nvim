@@ -33,22 +33,27 @@ opt.cursorline = true
 -- Autocompletion
 opt.pumheight = 10
 opt.pumwidth = 20
-opt.completeopt = { "menu", "menuone", "noselect" }
+opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 opt.shortmess:append("c")
 
 -- Swap & Backup
 opt.backup = false
 opt.swapfile = false
-opt.undofile = true 
+opt.undofile = true
 
 -- Linting
 vim.diagnostic.config({
-  virtual_text = true,      -- Show erro code on line
-  signs = true,             -- Show signs
-  update_in_insert = false, -- Don't diturb while typing
-  severity_sort = true,     -- Sort errors according to importance
+    virtual_text = true,      -- Show erro code on line
+    signs = true,             -- Show signs
+    update_in_insert = false, -- Don't diturb while typing
+    severity_sort = true      -- Sort errors according to importance
 })
 
--- Точечный маппинг только для основных клавиш навигации и редактирования
-vim.opt.langmap = "рh,оj,лk,дl,фa,иb,сc,вd,уe,аf,пg,рh,шi,оj,лk,зp,йq,кr,еt,гu,мv,цw,чx,нy,яz," ..
-                  "РH,ОJ,ЛK,ДL,ФA,ИB,СC,ВD,УE,АF,ПG,РH,ШI,ОJ,ЛK,ЗP,ЙQ,КR,ЕT,ГU,МV,ЦW,ЧX,НY,ЯZ"
+-- Spell
+
+opt.spell = true
+opt.spelllang = { "en", "ru" }
+
+-- Alternate keyboard layout Mapping
+vim.opt.langmap = "рh,оj,лk,дl,фa,иb,сc,вd,уe,аf,пg,рh,шi,оj,лk,зp,йq,кr,еt,гu,мv,цw,чx,нy,яz,"
+    .. "РH,ОJ,ЛK,ДL,ФA,ИB,СC,ВD,УE,АF,ПG,РH,ШI,ОJ,ЛK,ЗP,ЙQ,КR,ЕT,ГU,МV,ЦW,ЧX,НY,ЯZ"
